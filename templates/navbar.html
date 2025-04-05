@@ -1,0 +1,86 @@
+
+<nav class="navbar navbar-expand-lg mb-4">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Me<span>&</span>You</a>
+
+    <button class="navbar-toggler" style="width: 100px" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+   
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0" id="nav-list">
+        <li class="nav-item1">
+          <a class="nav-link text-red" id="about" aria-current="page" href="{% url 'Divingpakckage' %}">Home</a>
+        </li>
+        <li class="nav-item1">
+          <a class="nav-link text-red" id="about" aria-current="page" href="{% url 'home' %}">Restaurant</a>
+        </li>
+       
+       
+       
+        {% if user.is_authenticated and user.is_superuser %}
+          <li class="nav-item2">
+          <a class="nav-link text-red" id="menu"  href="{% url 'order1' %}">Orders</a>
+      </li>    
+        <li class="nav-item2">
+          <a class="nav-link text-red" id="menu" aria-current="page" href="{% url 'menu' %}">Add_Menu</a>
+        </li>
+        <li class="nav-item2">
+          <a class="nav-link text-red" id="about" aria-current="page" href="{% url 'product_list' %}">Manage_Menu</a>
+        </li>
+
+        
+        <li class="nav-item2">
+          <a class="nav-link text-red" id="menu" aria-current="page" href="{% url 'logout1' %}">Logout</a>
+        </li>
+        <li class="username1" id="username1">
+          Admin: {{request.user}}
+         </li>
+        {% elif user.is_authenticated %}
+        
+        <li class="nav-item2">
+          <a class="nav-link text-red" id="about"  href="{% url 'order2' %}">Orders</a>
+      </li>
+       
+        <li class="nav-item2">
+          <a class="nav-link text-red" id="menu" aria-current="page" href="{% url 'logout1' %}">Logout</a>
+        </li>
+        
+        <div class="username1"
+         id="username1">
+         Welcome  {{request.user}} !!!</div>
+       {% else %}
+       <li class="nav-item2">
+        <a class="nav-link text-red" id="about" aria-current="page" href="{% url 'about' %}">About</a>
+      </li>
+     
+      <li class="nav-item2">
+        <a class="nav-link text-red" id="login" aria-current="page" href="{% url 'login' %}">Login</a>
+      </li>
+     
+      <li class="nav-item3">
+        <a class="nav-link text-red" id="menu" aria-current="page"  href="{% url 'register' %}">Register</a>
+      </li>
+      {% endif %}
+      <div class="search-box">
+      <form class="d-flex" role="search" action="{% url 'searchprod' %}" method="POST">
+        {% csrf_token %}
+        <input class="search-input" type="search" placeholder="Search Food...." aria-label="Search" name="search">
+        <button class="search-btn">search</button>
+      </form>
+      </div>
+      <div >
+      <a class="cartlogo1" href="{% url 'viewtocart' %}" >
+      <i class="bi bi-cart3"></i>
+      </a>
+    </div>
+    </ul>
+   
+    
+  </div>
+ 
+     
+    </div>
+  </div>
+</nav>
+

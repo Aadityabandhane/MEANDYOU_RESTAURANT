@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block body %}
+
+<div class="video1">
+<video autoplay muted loop class="video1">
+  <source src="{% static 'videos\video1.mp4' %}" type="video/mp4">
+  </video>
+</div>
+    <div class="row" id="cardrow">
+      
+        {% for i in food_category %}
+        <div class="col-md-3" id="Cards">
+        <a href="{% url 'foodcat' i.id %}" id="category">  
+          <img class="img-zoom" id="card1" src="{{i.image.url}}" alt="Card image cap" height="400px">
+          <p class="description">{{i.food_type}}</p>
+        </a>
+      </div>
+        {% endfor %}   
+   
+  
+    </div>
+ 
+    </div>
+   
+    
+      
+
+        <div class="row">
+          <hr>
+          
+          {% for i in menu %}
+          
+          <div class="col-md-3" id="Cards">
+
+            <div class="card" >
+              {% comment %} <img class="card-img" src="{{i.image.url}}" alt="Card image cap" height="200px"> {% endcomment %}
+              <img class="card-img" src="{{i.image.url}}" alt="" height="200px">
+              <div class="card-content">
+               
+                <h5 class="card-title">{{i.item_name}}</h5>
+               
+                <p class="card-price">₹ {{i.price}}</p>
+                
+
+              </div>
+              <div class="card-footer">
+                <a href="{% url 'addfood' i.id %}" class="card-btn">View Item</a>
+              </div>
+            </div>
+            <br><br>
+
+          </div>
+
+          {% endfor %}
+     
+
+      
+    </div>
+</div>
+
+{% endblock body %}
+
+

@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}
+<title>Product Checkout</title>
+{% endblock title %}
+
+{% block body %}
+<div class="container" style="margin-bottom: 40px;">
+    <h2 class="text-white">Checkout</h2>
+</div>
+
+<div class="container text-center p-3 rounded shadow bg-danger mb-4">
+    <h2 class="text-white">Customer Details</h2>
+</div>
+
+<div class="row">
+    <div class="col-md-6 mt-3">
+        <div class="container my-3 p-5 w-75 shadow">
+            <div class="container text-center p-1 rounded shadow bg-danger">
+                <h2 class="text-white">Enter Customer Details</h2>
+            </div>
+
+            <form action="" method="POST">
+                {% csrf_token %}
+                <div class="alert alert-info">
+                    {{ forms }}
+                </div>
+
+                <button type="submit" class="btn btn-danger mt-3">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="row">
+            {% for i in data %}
+                <div class="col-md-4 mt-5">
+                    <img class="img-zoom" src="{{ i.foodid.image.url }}" alt="Card image cap" height="200px">
+                    <h5 class="card-title mt-3">{{ i.foodid.item_name }}</h5>
+                    <hr>
+                    <p class="card-text">₹ {{ i.foodid.price }}</p>
+                </div>
+            {% endfor %}
+        </div>
+
+        <hr>
+        <div class="total1">
+            <h2 id="total">Total: ₹ {{ total }}</h2>
+            <hr>
+            <h2 id="total">Total (₹ {{ total }}) + Delivery Charges (₹ {{ delivery_charges }})</h2>
+            <hr>
+            <h2 id="total">Final Price: ₹ {{ finalprice }}</h2>
+            <hr>
+        </div>
+    </div>
+</div>
+{% endblock body %}

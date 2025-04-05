@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block body %}
+<body class="divingbody">
+<div class="container" style="margin-bottom: 30px;">
+    <h2 class="text-white">diving</h2>
+</div>
+
+<div class="row">
+    <div class="col-md-1">
+
+    </div>
+    {% for i in Divingpack %}
+    <div class="col-md-10 mt-5">
+    <div >
+        <a href="{% url 'adddivingpackage' i.id %}">
+        <img src="{{i.image.url}}" alt="Image" class="divingimg"> </a>
+      
+       
+        </div>
+    </div>
+    </div>
+
+<div class="row">
+    <div class="col-md-1">
+
+    </div>
+    
+        <div class="col-md-5 mt-5 text-white" >
+            <h5 class="card-title-prod" style="font-size: 70px;">{{i.Tital}}</h5>
+            <p class="description"  style="font-size: 30px;">{{i.description}}</p>
+            <p class="card-text-prod"  style="font-size: 50px;">₹ {{i.price_per_person}} </p>
+            {% if success %}
+            <div class="alert alert-success">
+                {{success}}
+            </div>
+           {% endif %}
+    
+           {% if msg %}
+           <div class="alert alert-danger">
+            {{msg}}
+           </div>
+    
+           {% endif %}
+    
+            <div class="card-footer">
+                <a href="{% url 'instructor' %}" class="card-btn">Book Ride</a>
+            </div>
+           <br>
+               
+    
+    
+           
+    
+           {% endfor %}
+        
+    </div>
+    </div>
+
+</body>
+
+{% endblock body %}
+

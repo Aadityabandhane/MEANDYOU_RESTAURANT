@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block body %}
+<div class="container-fluid ">
+  <div class="container text-center p-1 rounded shadow bg-danger mb-2 mt-5">
+    <h2 class="text-white">Order Details</h2>
+  </div>
+</div>
+
+<div class="row">
+  {% for i in orders %}
+  <div class="col-md-3 mb-4 mt-5">
+    <div class="card order-card">
+      <!-- Image of the product -->
+      <img class="card-img-top" src="{{ i.product.image.url }}" alt="{{ i.product.item_name }}" height="200px">
+
+      <div class="card-body">
+        <h5 class="card-title">{{ i.product.item_name }}</h5>
+        <p class="card-title">Customer Name: <strong>{{ i.customer }}</strong></p>
+        <p class="card-text"><strong>Price:</strong> ₹{{ i.product.price }}</p>
+        <p class="card-text"><strong>Quantity:</strong> {{ i.quantity }}</p>
+        <p class="card-text"><strong>Order Date:</strong> {{ i.order_date }}</p>
+      </div>
+
+      <div class="card-footer">
+        <p class="status-label">{{ i.status }}</p>
+        {% if user.is_superuser %}
+        <!-- Update Order Form -->
+        
+
+        <form action="{% url 'update_order' i.id %}" method="POST">
+          {% csrf_token %}
+          <div class="form-group">
+            <label for="status">Update Status:</label>
+            <select name="status" id="status" class="form-control">
+              <option value="Pending" {% if i.status == 'Pending' %}selected{% endif %}>Pending</option>
+              <option value="Shipped" {% if i.status == 'Shipped' %}selected{% endif %}>Shipped</option>
+              <option value="Delivered" {% if i.status == 'Delivered' %}selected{% endif %}>Delivered</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-warning btn-sm mt-2">Update</button>
+        </form>
+        
+        <!-- Delete Order Form -->
+        <form action="{% url 'delete_order' i.id %}" method="POST" style="display:inline;">
+          {% csrf_token %}
+          
+        </form>
+      {% endif %}
+
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+{% endblock body %}

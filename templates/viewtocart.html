@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}
+<title>Product</title>
+{% endblock title %}
+
+{% block body %}
+<div class="container" style="margin-bottom: 40px;">
+    <h2 class="text-white">Add Menu</h2>
+</div>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-1"></div>
+
+    {% if data %}
+    
+        <!-- Customer Details and Bill Section -->
+        <div class="col-md-5">
+          <h3 class="p-1 rounded shadow bg-danger mt-3" id="viewcart1">Customer Details & Bill:</h3>
+          {% for i in data %}
+            {% if forloop.counter == 1 %}
+              <h5>Customer Name: {{ i.uid.username }}</h5>
+              <h5>Customer Email: {{ i.uid.email }}</h5>
+              <hr>
+            {% endif %}
+            
+            <div class="card-title">
+              <strong>{{ i.foodid.item_name }}</strong>: 
+              <strong class="card-text">₹ {{ i.foodid.price }}</strong>
+            </div>
+          {% endfor %}
+          
+          <hr>
+          <div class="totalam">Total: ₹ {{ total }} </div>
+          <hr>
+          <div class="totalam1">Total Amount: </div>
+          <div class="totalam"> ₹ {{ total }} </div>
+          <br>
+          <a href="{% url 'details' %}">
+            <button class="card-btn">Place Order</button>
+          </a>
+        </div>
+    
+        <!-- Orders Section -->
+        <div class="col-md-5">
+          <h3 class="rounded p-1 shadow bg-danger mt-3" id="viewcart1">Orders</h3>
+          {% for i in data %}
+            <hr>
+            <div class="row">
+              <!-- Product Image and Description -->
+              <div class="col-md-4" id="Cards">
+                <div class="card">
+                  <img class="img-zoom" id="imge1" src="{{ i.foodid.image.url }}" alt="Card image cap" height="200px">
+                </div>
+              </div>
+    
+              <!-- Product Info and Quantity Controls -->
+              <div class="col-md-8">
+                <h5 class="card-title">{{ i.foodid.item_name }}</h5>
+                <p class="description">{{ i.foodid.description }}</p>
+                <p class="card-text">₹ {{ i.foodid.price }}</p>
+    
+                <strong>Qty</strong>
+                <a href="/updateqty/0/{{ i.id }}"><button class="btn btn-danger">-</button></a>
+                <input type="number" value="{{ i.qty }}" min="1" class="qty-input">
+                <a href="/updateqty/1/{{ i.id }}"><button class="btn btn-danger">+</button></a>
+    
+                <button class="btn btn-danger" id="removeoreder">
+                  <a href="{% url 'remove_order' i.id %}" style="color: white;">Remove</a>
+                </button>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+    {% else %}
+
+    <div class="empty-cart-container">
+      <img src="{% static 'images/emptycart.png' %}" alt="Empty Cart" class="empty-cart-img">
+      <a href="{% url 'Divingpakckage' %}" class="back-home-link">Back To Home</a>
+  </div>
+  
+
+    {% endif %}
+
+
+    <div class="col-md-1"></div>
+  </div>
+</div>
+{% endblock body %}

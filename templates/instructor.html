@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block body %}
+<body class="divingbody">
+<div class="container" style="margin-bottom: 30px;">
+    <h2 class="text-white">diving</h2>
+</div>
+
+<div class="row">
+    <div class="col-md-1">
+
+    </div>
+    {% for i in Instructorinfo %}
+           <div class="col-md-3" id="Cards" style="width: 450px; margin-top: 40px;">
+
+            <div class="card" >
+              {% comment %} <img class="card-img" src="{{i.image.url}}" alt="Card image cap" height="200px"> {% endcomment %}
+             
+              <div class="card-content">
+                <h5 class="card-title-prod" style="font-size: 30px;">Name of Instructor: {{i.name}}</h5>
+                <p class="description"  style="font-size: 25px;">Bio: {{i.bio}}</p>
+                <p class="card-text-prod"  style="font-size: 25px;">Experience: {{i.experience_years}} Years </p>
+               
+            {% if success %}
+            <div class="alert alert-success">
+                {{success}}
+            </div>
+           {% endif %}
+    
+           {% if msg %}
+           <div class="alert alert-danger">
+            {{msg}}
+           </div>
+    
+           {% endif %}
+                
+
+              </div>
+              <div class="card-footer">
+                <a href="{% url 'booking_ride' %}" class="card-btn">Select_Instructor</a>
+              </div>
+            </div>
+            <br><br>
+
+          </div>
+    
+           
+    
+           {% endfor %}
+        
+    </div>
+    </div>
+
+</body>
+
+{% endblock body %}
+

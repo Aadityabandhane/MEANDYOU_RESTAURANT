@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block body %}
+<div class="container" style="margin-bottom: 40px;">
+  <h2 class="text-white">add menu</h2>
+</div>
+<div class="row">
+{% for i in searchfood %}
+<li class="list-group-item"><a href="{% url 'foodcat' i.id %}" id="category">{{i.food_type}}</a></li>
+{% endfor %}
+</ul>
+</div>
+
+
+<div class="row">
+ 
+  {% for i in searchfood %}
+  
+  <div class="col-md-3" id="Cards">
+
+    <div class="card" >
+      <img class="card-img" src="{{i.image.url}}" alt="Card image cap" height="200px">
+      <div class="card-content">
+       
+        <h5 class="card-title">{{i.item_name}}</h5>
+        <p class="card-description">{{i.description}}</p>
+        <p class="card-price">₹ {{i.price}}</p>
+        
+
+      </div>
+      <div class="card-footer">
+        <a href="{% url 'addfood' i.id %}" class="card-btn">View Item</a>
+      </div>
+    </div>
+    <br><br>
+
+  </div>
+
+  {% endfor %}
+
+
+
+</div>
+
+
+
+{% endblock body %}

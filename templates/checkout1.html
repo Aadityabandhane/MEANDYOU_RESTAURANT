@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}
+<title>Product Checkout</title>
+{% endblock title %}
+
+{% block body %}
+<div class="container" style="margin-bottom: 40px;">
+    <h2 class="text-white">Checkout</h2>
+</div>
+
+<div class="container text-center p-3 rounded shadow bg-danger mt-4">
+    <h2 class="text-white">Checkout</h2>
+</div>
+
+<div class="row">
+    <!-- Left Column: Customer Details -->
+    <div class="col-md-6 mt-3">
+        <div class="container p-5 shadow">
+            <div class="container text-center p-1 rounded shadow bg-info mb-3">
+                <h2 class="text-white">Customer Details</h2>
+            </div>
+
+            {% for i in customer_details %}
+                <div class="row" style="font-weight: 800; font-size: 20px; margin-bottom: 10px;">
+                    <div class="col-md-2">{{ i.user }}</div>
+                    <div class="col-md-2">{{ i.Name }}</div>
+                    <div class="col-md-2">{{ i.address }}</div>
+                    <div class="col-md-2">{{ i.city }}</div>
+                    <div class="col-md-2">{{ i.pincode }}</div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <hr>
+
+        <div class="total1">
+            <h2 id="total">Final Price: ₹{{ final_price }}</h2>
+            <hr>
+            <!-- Render PayPal button -->
+            <div>{{ paypal.render }}</div>
+            {% comment %} <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+                {% for name, value in paypal.fields.items %}
+                    <input type="hidden" name="{{ name }}" value="{{ value }}">
+                {% endfor %}
+                <button type="submit" class="btn btn-primary">Pay ₹{{ final_price }} with PayPal</button>
+            </form> {% endcomment %}
+        </div>
+    </div>
+
+    <!-- Right Column: Items in Cart -->
+    <div class="col-md-6 mt-3">
+        <div class="row">
+            {% for i in data %}
+                <div class="col-md-4 mt-3">
+                    <div class="card">
+                        <img class="img-zoom" src="{{ i.foodid.image.url }}" alt="Card image cap" height="200px">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ i.foodid.item_name }}</h5>
+                            <p class="card-text"><b>₹{{ i.foodid.price }}</b></p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock body %}

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+
+{% block body %}
+<div class="container">
+    <div class="container" style="margin-bottom: 40px;">
+        <h2 class="text-white">add menu</h2>
+    </div>
+    <div class="container text-center p-1 rounded shadow bg-danger">
+        <h2 class="text-white">Registration form</h2>
+    </div>
+    <div class="container my-3 p-5 w-50 shadow">
+        {% if error %}
+            {{error}}
+        {% endif %}
+        <form action="" method="POST">
+            {% csrf_token %}
+            {% if msg %}
+                <div class="alert alert-danger">
+                 {{msg}}
+                </div>
+         
+                {% endif %}
+            {{RF.as_p}}
+            
+            <p><input id="btnsub" class="card-btn" type="submit"></p>
+        </form>
+
+    </div>
+
+</div>
+
+
+{% endblock body %}

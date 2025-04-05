@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block body %}
+<div class="container" style="margin-bottom: 40px;">
+  <h2 class="text-white">Done</h2>
+</div>
+<div class="container text-center p-1 rounded shadow bg-danger mt-4">
+  <h2 class="text-white">Menu Details</h2>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        {% for i in products %}
+        <div class="col-md-3 mb-4">
+          <div class="card p-3 shadow-sm" style="border: 1px solidrgb(228, 220, 223); border-radius: 20px; transition: transform 0.3s;">
+            <img src="{{i.image.url}}" class="card-img-top" alt="..." height="250px" style="border-radius: 20px 20px 0 0;">
+            <div class="card-body text-center" style="background:rgb(236, 226, 231); border-radius: 0 0 20px 20px;">
+              <h5 class="card-title" style="font-family: 'Cursive', sans-serif;">{{i.item_name}}</h5>
+              <p class="card-text" style="font-weight: bold; color:rgb(87, 158, 15);">Rs.{{i.price}}</p>
+              <a href="{% url 'updateprod' i.id %}" class="btn btn-success" style="border-radius: 20px; padding: 10px 20px; transition: background-color 0.3s, transform 0.3s;">
+                Update
+              </a>
+              <a href="{% url 'deleteprod' i.id %}" class="btn btn-danger" style="border-radius: 20px; padding: 10px 20px; transition: background-color 0.3s, transform 0.3s;">
+                Delete
+              </a>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+{% endblock body %}

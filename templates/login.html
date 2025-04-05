@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+
+{% block body %}
+<div class="container">
+    <div class="container" style="margin-bottom: 40px;">
+        <h2 class="text-white">add menu</h2>
+    </div>
+    <div class="container text-center p-1 rounded shadow bg-danger">
+        <h2 class="text-white">LOGIN</h2>
+    </div>
+    <div class="login-container">
+    <form action="" method="POST" class="form1">
+        {% csrf_token %}
+        {% if msg %}
+                <div class="alert alert-danger">
+                 {{msg}}
+                </div>
+         
+                {% endif %}
+                {{LDF.as_p}}
+                
+                <input class="card-btn2 btn btn-primary" type="submit" value="Login">
+
+    
+                <div class="clickhere" id="forgotpass">
+                    <br>
+                        
+    <a href="{% url 'forgotpassword' %}"><button type="button">Forget password</button></a>
+
+                </div>
+                
+                <div class="clickhere1">
+                    <span>Create new account </span>
+                    <a class="create-account-link" id="login" href="{% url 'register' %}">click here</a>
+                </div>
+                
+        
+       
+    </div>
+   
+
+    </form>
+   
+
+    </div>
+
+</div>
+
+
+{% endblock body %}

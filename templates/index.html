@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block body %}
+
+<header>
+    <div>
+        <h1>Welcome to Restaurant ME & YOU</h1>
+        <p style="color : white">Delicious food, delightful experience</p>
+    </div>
+</header>
+<nav>
+<a href="{% url 'home' %}">Menu</a>
+<a href="{% url 'about' %}">About Us</a>
+<a href="#contact">Contact</a>
+</nav>
+<section id="menu">
+<h2>Our Menu</h2>
+<div class="menu">
+    <div class="menu-item">
+        <img src="{% static './images/card1.png.jpg' %}" alt="Dish 1">
+        <h3>VEG</h3>
+    </div>
+    <div class="menu-item">
+        <img src="{% static './images/dish2.jpg' %}" alt="Dish 2">
+        <h3>NON-VEG</h3>
+    </div>
+    <div class="menu-item">
+        <img src="{% static './images/myspecial.png' %}" alt="Dish 3">
+        <h3>DRINKS</h3>
+    </div>
+</div>
+
+</section>
+<section id="about">
+<h2>About Us</h2>
+<p>At [Restaurant ME & YOU], we are passionate about serving the best food with the finest ingredients. Join us for a culinary journey that delights your taste buds and warms your soul.</p>
+</section>
+
+
+
+
+{% endblock body %}
+

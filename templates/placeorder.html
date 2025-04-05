@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}
+<title>Product</title>
+{% endblock title %}
+
+{% block body %}
+<div class="container" style="margin-bottom: 40px;">
+    <h2 class="text-white">checkout1</h2>
+</div>
+<div class="container text-center p-1 rounded shadow bg-danger mt-5">
+    <h2 class="text-white">checkout</h2>
+</div>
+
+ <div class="row">
+    <div class="col-md-6 mt-3">
+
+        <div class="container my-3 p-5 w-50 shadow">
+            <div class="container text-center p-1 rounded shadow bg-info">
+                <h2 class="text-white">Customer Details </h2>
+            </div>
+            {% for i in customer_details %}
+            {{i.user}}
+            {{i.Name}}
+            {{i.address}}
+            {{i.city}}
+            {{i.pincode}}
+     {% endfor %}
+    
+           
+       
+    
+        </div>
+        <hr>
+    <div class="total1">
+        <h2  id="total">total: ₹{{total}}</h2>
+        <hr>
+        
+        <h2 id="total">total(₹{{total}}) + delivary_charges({{delivary_charges}})</h2>
+        <hr>
+         <h2  id="total">Final Price: ₹{{final_price}}</h2>
+         <hr>
+         {{paypal.render}}
+ 
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="row">
+            {% for i in data %}
+            <div class="col-md-4 mt-5">
+              
+                    <img class="img-zoom" id="img2" src="{{i.foodid.image.url}}" alt="Card image cap" height="200px">
+                  
+            
+                    <h5 class="card-title">{{i.foodid.item_name}}</h5>
+                    <hr>
+                  
+                    <p class="card-text"> ₹{{i.foodid.price}} </p>
+       
+              
+        
+               
+            </div>
+            {% endfor %}
+           
+        </div>
+
+    
+    </div>
+    
+   
+ </div>
+
+
+
+
+
+{% endblock body %}
